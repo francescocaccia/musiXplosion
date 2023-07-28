@@ -58,11 +58,13 @@ const HomePage = () => {
         <div className="container-fluid mt-4 p-4 bg-dark rounded shadow">
           <div className="row d-flex align-items-center gap-3 form-container">
             <div className="col-auto">
+              {/* Struttura HTML/JSX */}
               <img
                 src={possibileLogo}
                 alt="possibileLogo"
                 width={100}
                 height={100}
+                className="svg-image" // Aggiungi la classe svg-image qui
               />
             </div>
             <div className="col">

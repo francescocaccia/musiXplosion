@@ -125,8 +125,16 @@
 /* Aggiungi ulteriori stili e personalizzazioni se necessario */
 /* CSS */
 /* Aggiungi questa regola CSS per rendere l'h1 responsivo e prevenire l'overflow */
+/* CSS */
+/* Aggiungi questa regola CSS per rendere l'h1 responsivo, prevenire l'overflow e aggiungere un box shadow */
 h1.text-light {
   white-space: nowrap; /* Evita il wrap automatico del testo */
   text-overflow: ellipsis; /* Mostra i puntini di sospensione (...) quando il testo è troppo lungo */
   font-size: 28px; /* Regola la dimensione del carattere per adattarsi ai dispositivi mobili */
+  text-shadow: 0 4px 8px rgb(300, 245, 4); /* Aggiungi il text shadow all'h1 */
+}
+/* CSS */
+
+.svg-image {
+  filter: drop-shadow(0 4px 8px rgba(500, 0, 0, 1));
 }
