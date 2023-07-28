@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, Form, Button } from "react-bootstrap";
+import { Container, Form, Button, Row, Col, Spinner } from "react-bootstrap";
 import possibileLogo from "../possibileLogo.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
@@ -10,6 +10,7 @@ const HomePage = () => {
   const [searchArtist, setSearchArtist] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [selectedSongPreviewUrl, setSelectedSongPreviewUrl] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchAlbums = async () => {
@@ -21,8 +22,10 @@ const HomePage = () => {
         // Limita gli album ai primi dieci elementi
         const firstTenAlbums = data.tracks.data.slice(0, 12);
         setAlbums(firstTenAlbums);
+        setIsLoading(false);
       } catch (error) {
         console.error("Si è verificato un errore: ", error);
+        setIsLoading(false);
       }
     };
 
@@ -31,14 +34,17 @@ const HomePage = () => {
 
   const handleSearch = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       const response = await fetch(
         `https://striveschool-api.herokuapp.com/api/deezer/search?q=${searchArtist}`
       );
       const data = await response.json();
       setSearchResults(data.data);
+      setIsLoading(false);
     } catch (error) {
       console.error("Si è verificato un errore: ", error);
+      setIsLoading(false);
     }
   };
 
@@ -48,37 +54,45 @@ const HomePage = () => {
 
   return (
     <Container className="homepage-container">
-      <div className="container mt-4 p-4 bg-dark rounded shadow">
-        <div className="d-flex align-items-center gap-3 form-container">
-          <img
-            src={possibileLogo}
-            alt="possibileLogo"
-            width={100}
-            height={100}
-          />
-          <h1 className="mb-0 text-light">musiXplosion</h1>
-          <Form onSubmit={handleSearch} className="search-form">
-            <div className="input-group">
-              <Form.Control
-                type="text"
-                placeholder="Search by artist"
-                value={searchArtist}
-                onChange={(e) => setSearchArtist(e.target.value)}
+      <div className="container-fluid">
+        <div className="container-fluid mt-4 p-4 bg-dark rounded shadow">
+          <div className="row d-flex align-items-center gap-3 form-container">
+            <div className="col-auto">
+              <img
+                src={possibileLogo}
+                alt="possibileLogo"
+                width={100}
+                height={100}
               />
-              <Button
-                type="submit"
-                variant="transparent"
-                className="search-button"
-              >
-                <FontAwesomeIcon icon={faSearch} className="large-icon" />
-              </Button>
             </div>
-          </Form>
+            <div className="col">
+              <h1 className="mb-0 text-light">musiXplosion</h1>
+            </div>
+            <div className="col search-form">
+              <Form onSubmit={handleSearch}>
+                <div className="input-group">
+                  <Form.Control
+                    type="text"
+                    placeholder="Search by artist"
+                    value={searchArtist}
+                    onChange={(e) => setSearchArtist(e.target.value)}
+                  />
+                  <Button
+                    type="submit"
+                    variant="transparent"
+                    className="search-button"
+                  >
+                    <FontAwesomeIcon icon={faSearch} className="large-icon" />
+                  </Button>
+                </div>
+              </Form>
+            </div>
+          </div>
         </div>
-
-        <div className="row">
-          <h2 className="text-center mb-5 text-light">Home</h2>
-          {searchResults.length === 0 ? (
+        <div className="row justify-content-center">
+          {isLoading ? (
+            <Spinner animation="border" variant="primary" />
+          ) : searchResults.length === 0 ? (
             albums.length === 0 ? (
               <p className="text-center w-100">Loading...</p>
             ) : (
@@ -100,14 +114,6 @@ const HomePage = () => {
             ))
           )}
         </div>
-      </div>
-      <div className="audio-player-container">
-        {selectedSongPreviewUrl && (
-          <audio controls autoPlay>
-            <source src={selectedSongPreviewUrl} type="audio/mpeg" />
-            Il tuo browser non supporta l'elemento audio.
-          </audio>
-        )}
       </div>
     </Container>
   );

@@ -1,72 +1,69 @@
+/* Stile generale della pagina */
+.homepage-container {
+  background: linear-gradient(135deg, #ff0077, #00d4ff);
+  min-height: 100vh;
+  padding: 30px;
+}
+
+/* Stile per le card degli album/artisti */
 .card {
-  border: none;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 3rem;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   overflow: hidden;
 }
 
 .card:hover {
-  transform: scale(1.1);
-  box-shadow: 0 8px 16px rgba(2, 213, 250, 0.2);
-}
-.card .play-button {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.7);
-  border: none;
-  border-radius: 50%;
-  padding: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  transform: scale(1.07);
+  box-shadow: 0 8px 16px rgba(2, 213, 250, 0.3);
 }
 
-.card .play-button:hover {
-  background-color: rgba(0, 0, 0, 0.9);
+.card-body {
+  padding: 20px;
 }
 
-.titleCard {
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
+.card-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
 }
 
-.pCard {
-  color: white;
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
+.card-text {
+  font-size: 16px;
+  color: #555;
 }
 
-/* Stile per il contenitore dell'elemento audio */
-.audio-player-container {
-  position: relative;
-  margin-top: 20px;
-  text-align: center;
-}
-
-/* form per ricerca */
-
+/* Stile per il form di ricerca +++++++++++++++++++*/
 .form-container {
-  background-color: #5b5f4d;
+  background: linear-gradient(135deg, #9510d3, #fffb00);
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgb(51, 224, 7);
 }
 
 .form-container h1 {
   font-size: 36px;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
 }
 
 .search-form {
-  flex: 1;
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
 }
 
 .form-control {
+  flex: 1;
   border-radius: 5px;
   border: none;
   padding: 12px 16px;
   font-size: 16px;
   color: #333;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 1);
 }
 
 .search-button {
@@ -74,8 +71,62 @@
   border: none;
   margin-left: 10px;
   cursor: pointer;
+  color: white;
 }
 
 .search-button:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(243, 9, 9, 0.979);
+}
+
+/* Stile per il modal */
+.modal-content {
+  max-width: 400px;
+  margin: 0 auto;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(13, 159, 216, 0.6);
+  background: linear-gradient(135deg, #36ec09, #e72929);
+}
+
+.modal-header {
+  background-color: #333;
+  color: #fff;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.modal-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 10px 0;
+  color: #fff;
+}
+
+.modal-body {
+  text-align: center;
+  font: 1.5rem sans-serif;
+}
+
+.album-cover img {
+  max-width: 100%;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 2);
+}
+
+.modal-footer {
+  border-top: none;
+  padding: 10px;
+}
+
+.audio-player {
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* Aggiungi ulteriori stili e personalizzazioni se necessario */
+/* CSS */
+/* Aggiungi questa regola CSS per rendere l'h1 responsivo e prevenire l'overflow */
+h1.text-light {
+  white-space: nowrap; /* Evita il wrap automatico del testo */
+  text-overflow: ellipsis; /* Mostra i puntini di sospensione (...) quando il testo è troppo lungo */
+  font-size: 28px; /* Regola la dimensione del carattere per adattarsi ai dispositivi mobili */
 }
